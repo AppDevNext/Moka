@@ -1,0 +1,6 @@
+include(
+        ':moka',
+        ':modules:busyWaiter',
+        ':modules:busyWaiter-android',
+        ':sample'
+)
