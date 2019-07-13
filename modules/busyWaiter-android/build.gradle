@@ -1,0 +1,28 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion sdkVersion
+
+    defaultConfig {
+        minSdkVersion minSdk
+        targetSdkVersion sdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility javaVersion
+        targetCompatibility javaVersion
+    }
+}
+
+dependencies {
+    api "androidx.test.espresso:espresso-idling-resource:3.2.0"
+    implementation "androidx.annotation:annotation:1.1.0"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation project(path: ':modules:busyWaiter')
+}
