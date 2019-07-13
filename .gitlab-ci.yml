@@ -1,0 +1,18 @@
+stages:
+  - build
+
+.base:
+  before_script:
+    - pwd
+  tags:
+    - android
+
+BuildGlobal:
+  stage: build
+  extends: .base
+  only:
+    - master
+    - merge_requests
+  script:
+    - ./gradlew clean assemble testDebugUnitTest
+
