@@ -35,7 +35,7 @@ class MultiMapTest {
     fun whenValueAddedFirstTime_thenReturnTrue() {
         val wasAdded = map!!.add(1, "2")
 
-        assertThat(wasAdded).isTrue
+        assertThat(wasAdded).isTrue()
     }
 
     @Test
@@ -44,7 +44,7 @@ class MultiMapTest {
         map!!.add(2, "2")
         val resultForSecondAdd = map!!.add(2, "2")
 
-        assertThat(resultForSecondAdd).isFalse
+        assertThat(resultForSecondAdd).isFalse()
     }
 
     @Test
@@ -97,8 +97,8 @@ class MultiMapTest {
         val resultWhenValuePresent = map!!.removeValue("1")
         val resultAfterValueRemoved = map!!.removeValue("1")
 
-        assertThat(resultWhenValuePresent).isTrue
-        assertThat(resultAfterValueRemoved).isFalse
+        assertThat(resultWhenValuePresent).isTrue()
+        assertThat(resultAfterValueRemoved).isFalse()
     }
 
     @Test
@@ -137,7 +137,7 @@ class MultiMapTest {
         map!!.add(1, "1")
         map!!.removeValue("1")
 
-        assertThat(map!!.hasNoValues()).isTrue
+        assertThat(map!!.hasNoValues()).isTrue()
     }
 
     @Test
@@ -145,7 +145,7 @@ class MultiMapTest {
     fun whenHasValue_ThenNotIsEmpty() {
         map!!.add(1, "1")
 
-        assertThat(map!!.hasNoValues()).isFalse
+        assertThat(map!!.hasNoValues()).isFalse()
     }
 
     @Test

@@ -2,7 +2,7 @@ package com.moka
 
 import com.moka.waiter.BusyWaiter
 import com.moka.waiter.BusyWaiter.Category.NETWORK
-import com.moka.waiter.BusyWaiter.ExecutionThread.IMMEDIATE
+import com.moka.waiter.BusyWaiter.ExecutionThread.Companion.IMMEDIATE
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.Assert.*
 import org.junit.Before
@@ -82,32 +82,6 @@ class BusyWaiterTest {
 
     @Test
     @Throws(Exception::class)
-    fun whenBusyWithNull_thenThrowNullPointerException() {
-        try {
-            busyWaiter.busyWith(null)
-            fail("busyWith(null) should throw NullPointerException")
-        } catch (e: NullPointerException) {
-            // expected
-        }
-
-    }
-
-
-    @Test
-    @Throws(Exception::class)
-    fun whenCompletedNull_thenThrowNullPointerException() {
-        try {
-            busyWaiter.completed(null)
-            fail("completed(null) should throw NullPointerException")
-        } catch (e: NullPointerException) {
-            // expected
-        }
-
-    }
-
-
-    @Test
-    @Throws(Exception::class)
     fun whenBusyWithSomething_thenNameIncludesSomething() {
         busyWaiter.busyWith("some thing")
         assertThat(busyWaiter.name).contains("some thing")
@@ -121,16 +95,6 @@ class BusyWaiterTest {
         busyWaiter.busyWith(Any())
         busyWaiter.completedEverything()
         assertNotBusy(busyWaiter)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun whenCompleted_thenNotifyCallback() {
-        busyWaiter.busyWith(this)
-        val gotNotifiedOfIdle = booleanArrayOf(false)
-        busyWaiter.registerNoLongerBusyCallback { gotNotifiedOfIdle[0] = true }
-        busyWaiter.completed(this)
-        assertTrue(gotNotifiedOfIdle[0])
     }
 
     @Test
