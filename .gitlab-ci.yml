@@ -14,5 +14,5 @@ BuildGlobal:
     - master
     - merge_requests
   script:
-    - ./gradlew clean assemble
+    - ./gradlew clean assemble testDebugUnitTest
 
