@@ -6,7 +6,7 @@ import androidx.test.espresso.action.AdapterViewProtocol
 import androidx.test.espresso.action.ViewActions.clearText
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import com.moka.actions.clickWithRetry
+import com.moka.lib.actions.clickWithRetry
 import org.hamcrest.Matcher
 
 class MokaDataInteraction internal constructor(private val dataInteraction: DataInteraction) : MokaInteraction() {
@@ -27,7 +27,7 @@ class MokaDataInteraction internal constructor(private val dataInteraction: Data
     }
 
     fun setText(text: String): MokaDataInteraction {
-        perform(com.moka.actions.setText(text))
+        perform(com.moka.lib.actions.setText(text))
         return this
     }
 

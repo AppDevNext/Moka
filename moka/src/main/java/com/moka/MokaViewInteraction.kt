@@ -9,9 +9,9 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.clearText
 import androidx.test.espresso.action.ViewActions.typeTextIntoFocusedView
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import com.moka.actions.clickWithRetry
-import com.moka.actions.requestFocus
-import com.moka.matchers.hasWindowFocus
+import com.moka.lib.actions.clickWithRetry
+import com.moka.lib.actions.requestFocus
+import com.moka.lib.matchers.hasWindowFocus
 import org.hamcrest.Matcher
 
 class MokaViewInteraction internal constructor(private val viewInteraction: ViewInteraction) : MokaInteraction() {
@@ -40,7 +40,7 @@ class MokaViewInteraction internal constructor(private val viewInteraction: View
     }
 
     fun setText(text: String): MokaViewInteraction {
-        perform(com.moka.actions.setText(text))
+        perform(com.moka.lib.actions.setText(text))
         return this
     }
 

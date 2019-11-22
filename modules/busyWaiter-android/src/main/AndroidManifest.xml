@@ -1,7 +1,0 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.moka.waiter.android">
-
-    <application
-        android:allowBackup="false"
-        android:fullBackupContent="false"></application>
-</manifest>

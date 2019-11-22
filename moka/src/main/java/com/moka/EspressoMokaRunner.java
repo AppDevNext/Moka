@@ -13,10 +13,12 @@ import androidx.test.runner.lifecycle.ActivityLifecycleCallback;
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import androidx.test.runner.lifecycle.Stage;
 
-import com.moka.internals.ExceptionFromAnotherPlace;
-import com.moka.internals.TestAccessibilityEventListener;
-import com.moka.mainthread.MainThread;
-import com.moka.waiter.BusyWaiter;
+import com.moka.lib.internals.ExceptionFromAnotherPlace;
+import com.moka.lib.internals.TestAccessibilityEventListener;
+import com.moka.lib.mainthread.MainThread;
+import com.moka.waiter.android.BusyWaiter;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.concurrent.Callable;
@@ -36,10 +38,9 @@ import static androidx.test.InstrumentationRegistry.getTargetContext;
 import static com.moka.EspressoInternals.alreadyLooping;
 import static com.moka.EspressoInternals.waitForEspressoToIdle;
 import static com.moka.EspressoMoka.intentWillBeStubbedOut;
-import static com.moka.internals.AnimatorsMoka.disableAnimators;
-import static com.moka.internals.DeviceSugar.printAvailableScreenSpace;
-import static com.moka.internals.ExceptionSugar.propagate;
-import static com.moka.internals.PlayServicesSugar.printPlayServicesVersion;
+import static com.moka.lib.internals.AnimatorsMoka.disableAnimators;
+import static com.moka.lib.internals.DeviceSugar.printAvailableScreenSpace;
+import static com.moka.lib.internals.ExceptionSugar.propagate;
 import static java.lang.String.format;
 import static java.util.Locale.US;
 
@@ -75,14 +76,9 @@ public final class EspressoMokaRunner {
         IS_STARTED = true;
         INSTRUMENTATION_THREAD = Thread.currentThread();
         makeEspressoWaitUntilActivitiesAreResumed();
-        printPlayServicesVersion();
         printAvailableScreenSpace();
         setupAccessibilityEventListener();
         EspressoMoka.onStart();
-    }
-
-    public static void onDestroy() {
-        /* no op for now */
     }
 
     public static boolean onException(Object obj, @Nullable Throwable e) {
@@ -225,7 +221,7 @@ public final class EspressoMokaRunner {
         final Thread.UncaughtExceptionHandler originalUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
-            public void uncaughtException(final Thread thread, final Throwable ex) {
+            public void uncaughtException(@NotNull final Thread thread, @NotNull final Throwable ex) {
                 if (thread.equals(INSTRUMENTATION_THREAD)) {
                     propagate(ex);
                 } else {
@@ -314,7 +310,7 @@ public final class EspressoMokaRunner {
 
     private static class BusyWaiterExecutionThread implements BusyWaiter.ExecutionThread {
         @Override
-        public void execute(final Runnable runnable) {
+        public void execute(@NotNull final Runnable runnable) {
             MAIN_THREAD_HANDLER.post(runnable);
         }
     }

@@ -6,7 +6,7 @@ import androidx.test.espresso.IdlingPolicies;
 import androidx.test.runner.AndroidJUnitRunner;
 
 import com.moka.EspressoMokaRunner;
-import com.moka.debug.DebugTrace;
+import com.moka.lib.debug.DebugTrace;
 
 import java.util.concurrent.TimeUnit;
 

@@ -20,9 +20,9 @@ import timber.log.Timber;
 import static com.moka.EspressoMokaRunner.failIfInstrumentationCaughtAnyErrors;
 import static com.moka.EspressoMokaRunner.loopMainThreadMillis;
 import static com.moka.EspressoMokaRunner.runOnMainSync;
-import static com.moka.internals.ExceptionSugar.propagate;
-import static com.moka.internals.Reflection.getStaticFieldValue;
-import static com.moka.internals.Reflection.invokeStatic;
+import static com.moka.lib.internals.ExceptionSugar.propagate;
+import static com.moka.lib.internals.Reflection.getStaticFieldValue;
+import static com.moka.lib.internals.Reflection.invokeStatic;
 import static java.lang.System.currentTimeMillis;
 
 public final class EspressoInternals {

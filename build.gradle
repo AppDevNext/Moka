@@ -5,7 +5,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven { url 'https://plugins.gradle.org/m2/' }
         maven { url "https://plugins.gradle.org/m2/" }
         maven { url 'https://jitpack.io' }
         maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local/" }
@@ -19,10 +18,6 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     }
 
-    configurations {
-        androidTestImplementation.exclude group: 'com.android.support', module: 'support-v4'
-    }
-
 }
 
 ext {
@@ -30,28 +25,11 @@ ext {
     versionRevision = getGitCommitCount()
 
     sdkVersion = 29
-    minSdk = 19
+    minSdk = 21
     javaVersion = JavaVersion.VERSION_1_8
     androidxTestEspresso = '3.2.0'
     androidxTestOrchestrator = '1.1.1'
     androidxTestExtJunit = '1.1.0'
-
-    configurations.all {
-        resolutionStrategy.eachDependency { details ->
-            if (details.requested.group == 'com.android.support'
-                    && !details.requested.name.contains('multidex')) {
-                details.useVersion versions.support
-            }
-        }
-    }
-}
-
-private def getPropertiesPath(String filename) {
-    if (useAlwaysDebugKeystore) {
-        return debugKeystoresPath + File.separator + debugKeystorePropertiesFileName
-    } else {
-        return keystoresPath + File.separator + filename
-    }
 }
 
 allprojects {
@@ -59,7 +37,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url 'https://maven.fabric.io/public' }
         maven { url 'https://jitpack.io' }
     }
 

@@ -5,8 +5,8 @@ import androidx.test.espresso.*
 import androidx.test.espresso.util.HumanReadables.getViewHierarchyErrorMessage
 import com.moka.EspressoInternals.waitForEspressoToIdle
 import com.moka.EspressoMokaRunner.runOnMainSyncDelayed
-import com.moka.internals.TestAccessibilityEventListener.toPrintString
-import com.moka.internals.propagate
+import com.moka.lib.internals.TestAccessibilityEventListener.toPrintString
+import com.moka.lib.internals.propagate
 import org.hamcrest.BaseMatcher
 import org.hamcrest.Description
 import org.hamcrest.Matcher

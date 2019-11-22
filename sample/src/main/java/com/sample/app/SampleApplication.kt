@@ -1,9 +1,9 @@
 package com.sample.app
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import timber.log.Timber
 
-class SampleApplication : Application() {
+class SampleApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
