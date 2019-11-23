@@ -32,12 +32,9 @@ env:
     # PATH order is incredibly important. e.g. the 'emulator' script exists in more than one place!
     - PATH=${ANDROID_HOME}:${ANDROID_HOME}/emulator:${TOOLS}:${TOOLS}/bin:${ANDROID_HOME}/platform-tools:${PATH}
 
-#branches:
-#  only:
-#    - master
-#
-#jdk:
-#  - oraclejdk8
+branches:
+  only:
+    - master
 
 before_install:
   # Set up KVM
