@@ -10,12 +10,12 @@ import org.junit.Test
 
 class BusyWaiterTest {
 
-    private lateinit var busyWaiter: com.moka.waiter.android.BusyWaiter
+    private lateinit var busyWaiter: BusyWaiter
 
     @Before
     @Throws(Exception::class)
     fun setUp() {
-        busyWaiter = com.moka.waiter.android.BusyWaiter.withOperationsCompletedOn(IMMEDIATE)
+        busyWaiter = BusyWaiter.withOperationsCompletedOn(IMMEDIATE)
     }
 
     @Test
@@ -113,11 +113,11 @@ class BusyWaiterTest {
         assertNotBusy(busyWaiter)
     }
 
-    private fun assertNotBusy(busyWaiter: com.moka.waiter.android.BusyWaiter) {
+    private fun assertNotBusy(busyWaiter: BusyWaiter) {
         assertTrue(busyWaiter.isNotBusy)
     }
 
-    private fun assertIsBusy(busyWaiter: com.moka.waiter.android.BusyWaiter) {
+    private fun assertIsBusy(busyWaiter: BusyWaiter) {
         assertFalse(busyWaiter.isNotBusy)
     }
 }
