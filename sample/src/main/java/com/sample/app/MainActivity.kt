@@ -1,5 +1,7 @@
 package com.sample.app
 
+import android.content.SharedPreferences
+import android.content.ContextWrapper
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -29,6 +31,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+
+        val sharedPreferences = getSharedPreferences("java", 0)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

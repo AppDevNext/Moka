@@ -23,8 +23,22 @@ allprojects {
         maven { url 'https://jitpack.io' }
     }
 }
-```
+````
 
+## Usage
+```
+android.support.test.espresso.ViewInteraction -> com.moka.MokaViewInteraction
+androidx.test.espresso.ViewInteraction -> com.moka.MokaViewInteraction
+
+
+android.support.test.espresso.Espresso.onView -> com.moka.EspressoMoka.onView
+
+.check(matches( -> .checkMatches(
+
+onView(withId(R.id.action_filter)).check(doesNotExist()) -> checkThatViewWithIdDoesNotExist(R.id.action_filter);
+
+.perform(scrollTo(), typeText( ->  .scrollTo().clearAndType(
+``
 ## License
 
     Copyright (C) 2019 hannesa2
