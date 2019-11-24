@@ -1,12 +1,13 @@
 package com.sample.app
 
 import android.Manifest
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.moka.EspressoMoka
 import androidx.test.rule.GrantPermissionRule
+import com.moka.EspressoMoka
 import com.moka.utils.Screenshot
 import org.junit.Rule
 import org.junit.Test
@@ -31,6 +32,12 @@ class EditTextTest {
         // Check that the text was changed.
         EspressoMoka.onView(ViewMatchers.withId(R.id.textToBeChanged)).checkMatches(ViewMatchers.withText(STRING_TO_BE_TYPED))
         Screenshot.takeScreenshot("SampleEnd")
+    }
+
+    @Test
+    fun wrongUsage() {
+        // Type text and then press the button.
+        onView(ViewMatchers.withId(R.id.editTextUserInput)).perform(ViewActions.typeText(STRING_TO_BE_TYPED), ViewActions.closeSoftKeyboard())
     }
 
     companion object {
