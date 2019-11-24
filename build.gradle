@@ -22,6 +22,9 @@ ext {
 
     sdkVersion = 33
     androidxTestEspresso = '3.5.1'
+    androidxTestOrchestrator = '1.1.1'
+    androidxTestExtJunit = '1.1.0'
+    androidTools = '30.3.1' // For Android 4.0, it's 27.0.0-beta01 https://mvnrepository.com/artifact/com.android.tools.lint/lint-api?repo=google
 }
 
 println "Gradle uses Java ${Jvm.current()}"

@@ -47,6 +47,8 @@ dependencies {
 
     testImplementation "org.assertj:assertj-core:3.24.2"
     testImplementation 'junit:junit:4.13.2'
+
+    lintPublish project(':lintChecks')
 }
 
 project.afterEvaluate {

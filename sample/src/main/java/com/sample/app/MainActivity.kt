@@ -1,5 +1,7 @@
 package com.sample.app
 
+import android.content.SharedPreferences
+import android.content.ContextWrapper
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -40,6 +42,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val adapter = StringsAdapter(listOf("A", "B", "C"))
         recyclerTest.adapter = adapter
+
+        val sharedPreferences = getSharedPreferences("java", 0)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
