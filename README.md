@@ -23,11 +23,27 @@ allprojects {
       maven { url 'https://jitpack.io' }
    }
 }
+````
+
+## Usage
 ```
+android.support.test.espresso.ViewInteraction -> com.moka.MokaViewInteraction
+androidx.test.espresso.ViewInteraction -> com.moka.MokaViewInteraction
+
+
+android.support.test.espresso.Espresso.onView -> com.moka.EspressoMoka.onView
+
+.check(matches( -> .checkMatches(
+
+onView(withId(R.id.action_filter)).check(doesNotExist()) -> checkThatViewWithIdDoesNotExist(R.id.action_filter);
+
+.perform(scrollTo(), typeText( ->  .scrollTo().clearAndType(
+```
+
 ## No more Thread.sleep() in Espresso
 
-To get rid of Thread.sleep() in tests, there is `WaitingAssertion` which waits until a Matcher pass or the timeout elapse. 
-eg, instead of 
+To get rid of Thread.sleep() in tests, there is `WaitingAssertion` which waits until a Matcher pass or the timeout elapse.
+eg, instead of
 
 `    onView(withId(R.id.preview_display_layout)).check(matches(isDisplayed()))`
 
