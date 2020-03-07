@@ -20,11 +20,6 @@ android {
         }
     }
 
-    packagingOptions {
-        // https://issuetracker.google.com/issues/69333598
-        pickFirst 'protobuf.meta'
-    }
-
     compileOptions {
         sourceCompatibility javaVersion
         targetCompatibility javaVersion
