@@ -16,7 +16,7 @@ class EditTextTest {
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun changeText_sameActivity() {
+    fun changeTextSameActivity() {
         // Type text and then press the button.
         EspressoMoka.onView(ViewMatchers.withId(R.id.editTextUserInput)).perform(ViewActions.typeText(STRING_TO_BE_TYPED), ViewActions.closeSoftKeyboard())
         EspressoMoka.onView(ViewMatchers.withId(R.id.changeTextBt)).perform(ViewActions.click())
