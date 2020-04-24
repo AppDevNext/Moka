@@ -40,7 +40,7 @@ jobs:
         uses: malinskiy/action-android/emulator-run-cmd@release/0.0.5
         with:
           cmd: ./gradlew cAT --stacktrace
-          api: 21
+          api: 28
           tag: default
           abi: x86
       - name: Archive Espresso results
@@ -57,3 +57,10 @@ jobs:
         with:
           name: Lint-report
           path: sample/build/reports/lint-results.html
+      - name: png-find
+        run: find screenshots -name '*.png'
+      - name: Archive screenshots
+        uses: actions/upload-artifact@v1
+        with:
+          name: Screenshots-Moka
+          path: screenshots/adb
