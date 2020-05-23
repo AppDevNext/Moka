@@ -25,9 +25,23 @@ jobs:
       - name: Install Android SDK
         uses: malinskiy/action-android/install-sdk@release/0.0.5
       - name: Build project
-        run: ./gradlew build --stacktrace
+        run: ./gradlew assemble --stacktrace
       - name: Run tests
         run: ./gradlew test --stacktrace
+  Check:
+    name: Check
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install JDK ${{ matrix.java_version }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Install Android SDK
+        uses: malinskiy/action-android/install-sdk@release/0.0.5
+      - name: Build project
+        run: ./gradlew lint --stacktrace
       - name: Archive Lint report
         uses: actions/upload-artifact@v1
         with:
