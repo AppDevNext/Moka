@@ -15,7 +15,7 @@ fun hasBundleExtra(bundleKey: String, bundle: Bundle): Matcher<Intent> {
         }
 
         public override fun matchesSafely(intent: Intent): Boolean {
-            return bundle.toString() == intent.getBundleExtra(bundleKey).toString()
+            return bundle.toString() == intent.getBundleExtra(bundleKey)?.toString()
         }
     }
 }

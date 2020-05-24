@@ -8,7 +8,6 @@ import androidx.test.espresso.PerformException
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.espresso.util.HumanReadables
 import androidx.test.espresso.util.HumanReadables.getViewHierarchyErrorMessage
 import com.moka.lib.internals.Reflection.getFieldValue
 import org.hamcrest.Matcher
@@ -73,15 +72,7 @@ class NestedScrollViewScrollToAction : ViewAction {
 
     private fun findScrollView(view: View): View {
         val parent = view.parent as View
-        if (parent != null) {
-            return parent as? NestedScrollView ?: findScrollView(parent)
-        }
-        throw PerformException.Builder()
-                .withActionDescription(this.description)
-                .withViewDescription(HumanReadables.describe(view))
-                .withCause(RuntimeException(
-                        "Scrolling aborted due to not being NestedScrollView child"))
-                .build()
+        return parent as? NestedScrollView ?: findScrollView(parent)
     }
 
     override fun getDescription(): String {
