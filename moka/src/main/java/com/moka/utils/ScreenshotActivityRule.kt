@@ -1,5 +1,6 @@
 package com.moka.utils
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.util.Log
 import androidx.test.espresso.Espresso
@@ -31,6 +32,7 @@ open class ScreenshotActivityRule<T : Activity>(activityClass: Class<T>) : NoAni
         return super.apply(base, description)
     }
 
+    @SuppressLint("LogNotTimber")
     private fun dumpThreads() {
         val activeCount = Thread.activeCount()
         val threads = arrayOfNulls<Thread>(activeCount)
