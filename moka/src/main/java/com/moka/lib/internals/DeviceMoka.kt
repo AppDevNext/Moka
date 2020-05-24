@@ -6,11 +6,11 @@ import android.content.Context
 import android.graphics.Point
 import android.util.DisplayMetrics
 import android.view.WindowManager
-import androidx.test.InstrumentationRegistry
+import androidx.test.platform.app.InstrumentationRegistry
 import timber.log.Timber
 
 fun printAvailableScreenSpace() {
-    val windowManager = InstrumentationRegistry.getTargetContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    val windowManager = InstrumentationRegistry.getInstrumentation().context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
     val displayMetrics = DisplayMetrics().apply { windowManager.defaultDisplay.getMetrics(this) }
 
