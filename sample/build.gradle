@@ -7,7 +7,7 @@ android {
     compileSdkVersion sdkVersion
 
     defaultConfig {
-        minSdkVersion minSdk
+        minSdkVersion 21
         targetSdkVersion sdkVersion
 
         applicationId "com.sample.app"

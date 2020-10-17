@@ -25,11 +25,8 @@ ext {
     versionRevision = getGitCommitCount()
 
     sdkVersion = 29
-    minSdk = 21
     javaVersion = JavaVersion.VERSION_1_8
     androidxTestEspresso = '3.3.0'
-    androidxTestOrchestrator = '1.1.1'
-    androidxTestExtJunit = '1.1.0'
 }
 
 allprojects {
