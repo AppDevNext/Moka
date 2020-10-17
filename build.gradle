@@ -12,8 +12,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.3'
-        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.google.gms:google-services:4.3.4'
+        classpath 'com.android.tools.build:gradle:4.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     }
@@ -25,11 +25,8 @@ ext {
     versionRevision = getGitCommitCount()
 
     sdkVersion = 29
-    minSdk = 21
     javaVersion = JavaVersion.VERSION_1_8
     androidxTestEspresso = '3.3.0'
-    androidxTestOrchestrator = '1.1.1'
-    androidxTestExtJunit = '1.1.0'
 }
 
 allprojects {
