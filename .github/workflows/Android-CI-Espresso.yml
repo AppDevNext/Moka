@@ -1,12 +1,6 @@
 name: CI
 
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+on: [pull_request]
 
 jobs:
   Build:
@@ -23,11 +17,11 @@ jobs:
         with:
           java-version: ${{ matrix.java_version }}
       - name: Install Android SDK
-        uses: malinskiy/action-android/install-sdk@release/0.0.5
+        uses: malinskiy/action-android/install-sdk@release/0.0.7
       - name: Build project
-        run: ./gradlew assemble --stacktrace
+        run: ./gradlew assemble
       - name: Run tests
-        run: ./gradlew test --stacktrace
+        run: ./gradlew test
   Check:
     name: Check
     runs-on: macOS-latest
@@ -39,9 +33,9 @@ jobs:
         with:
           java-version: 1.8
       - name: Install Android SDK
-        uses: malinskiy/action-android/install-sdk@release/0.0.5
+        uses: malinskiy/action-android/install-sdk@release/0.0.7
       - name: Build project
-        run: ./gradlew lint --stacktrace
+        run: ./gradlew lint
       - name: Archive Lint report
         uses: actions/upload-artifact@v1
         with:
@@ -50,10 +44,6 @@ jobs:
   Espresso:
     runs-on: macOS-latest
     steps:
-      # In order to have sha256sum on macOS, we need to install coreutils first
-      # Use this until coreutils or sha256sum are natively included in macOS on actions https://github.com/actions/virtual-environments/issues/90
-      - name: Install coreutils for macOS
-        run: brew install coreutils
       - uses: actions/checkout@v2
         with:
           submodules: true
@@ -62,11 +52,11 @@ jobs:
         with:
           java-version: 1.8
       - name: Install Android SDK
-        uses: malinskiy/action-android/install-sdk@release/0.0.5
+        uses: malinskiy/action-android/install-sdk@release/0.0.7
       - name: Run instrumentation tests
-        uses: malinskiy/action-android/emulator-run-cmd@release/0.0.5
+        uses: malinskiy/action-android/emulator-run-cmd@release/0.0.7
         with:
-          cmd: ./gradlew cAT --stacktrace
+          cmd: ./gradlew cAT
           api: 28
           tag: default
           abi: x86
