@@ -22,12 +22,6 @@ android {
         }
     }
 
-    configurations.all {
-        resolutionStrategy {
-            // It should removed as soon as the project compiles without it
-            force 'org.jetbrains:annotations:13.0'
-        }
-    }
 }
 
 dependencies {
