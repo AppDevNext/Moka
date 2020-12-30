@@ -10,7 +10,7 @@ The easiest way to add `Moka` to your project is via Gradle. Just add the follow
 
 ```groovy
 dependencies {
-    androidTestImplementation 'com.github.hannesa2:Moka:$latestVersion'
+   androidTestImplementation 'com.github.hannesa2:Moka:$latestVersion'
 }
 ```
 
@@ -18,16 +18,26 @@ To tell Gradle where to find the library, make sure `build.gradle` also contains
 
 ```groovy
 allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
+   repositories {
+      ...
+      maven { url 'https://jitpack.io' }
+   }
 }
 ```
+## No more Thread.sleep() in Espresso
+
+To get rid of Thread.sleep() in tests, there is `WaitingAssertion` which waits until a Matcher pass or the timeout elapse. 
+eg, instead of 
+
+`    onView(withId(R.id.preview_display_layout)).check(matches(isDisplayed()))`
+
+you can use this with a maximum time till an Assertion will be raised
+
+`    WaitingAssertion.assertVisibility(R.id.preview_display_layout, View.VISIBLE, 1500)`
 
 ## License
 
-    Copyright (C) 2019 hannesa2
+    Copyright (C) 2021 hannesa2
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
