@@ -42,5 +42,5 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
 
     testImplementation "org.assertj:assertj-core:3.19.0"
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
 }
