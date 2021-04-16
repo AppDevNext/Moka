@@ -2,6 +2,7 @@ apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
 dependencies {
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compileOnly "com.android.tools.lint:lint-api:$androidTools"
     compileOnly "com.android.tools.lint:lint-checks:$androidTools"
     testImplementation "com.android.tools.lint:lint:$androidTools"
