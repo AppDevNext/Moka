@@ -1,4 +1,4 @@
-package com.bmwgroup.idnext.test.assertions
+package com.moka.lib.assertions
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
