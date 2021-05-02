@@ -35,6 +35,14 @@ you can use this with a maximum time till an Assertion will be raised
 
 `    WaitingAssertion.assertVisibility(R.id.preview_display_layout, View.VISIBLE, 1500)`
 
+or instead 
+
+```onView(withId(R.id.log_recycler)).check(ViewAssertions.matches(isDisplayed()))```
+
+it's now
+
+```WaitingAssertion.checkAssertion(R.id.log_recycler, isDisplayed(), 1500)```
+
 ## License
 
     Copyright (C) 2021 hannesa2
