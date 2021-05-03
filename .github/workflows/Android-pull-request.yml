@@ -20,7 +20,7 @@ jobs:
       - name: Install Android SDK
         uses: malinskiy/action-android/install-sdk@release/0.1.1
       - name: Build project
-        run: ./gradlew assemble
+        run: ./gradlew assemble install
       - name: Run instrumentation tests
         uses: malinskiy/action-android/emulator-run-cmd@release/0.1.1
         with:
