@@ -9,7 +9,6 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-
     <TextView
         android:id="@+id/textToBeChanged"
         android:layout_width="wrap_content"
@@ -20,15 +19,14 @@
         android:text="@string/hello_world"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-
     <EditText
         android:id="@+id/editTextUserInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:hint="@string/type_something"
-        android:inputType="text"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/changeTextBt"
@@ -46,4 +44,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/open_activity_and_change_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

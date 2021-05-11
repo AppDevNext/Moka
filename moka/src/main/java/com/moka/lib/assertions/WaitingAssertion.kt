@@ -2,17 +2,12 @@ package com.moka.lib.assertions
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.UiController
-import androidx.test.espresso.ViewAction
-import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.*
 import androidx.test.espresso.action.ViewActions.actionWithAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withText
-import org.hamcrest.Description
-import org.hamcrest.Matcher
-import org.hamcrest.StringDescription
+import org.hamcrest.*
 import timber.log.Timber
 
 /**
@@ -115,5 +110,37 @@ class WaitingAssertion {
 
             checkAssertion(Espresso.onView(ViewMatchers.withId(viewId)), matcher, timeoutInMs)
         }
+
+        @Suppress("unused")
+        fun assertRecyclerAdapterItemsCount(viewId: Int, expectedCount: Int, matcherOperator : MatchOperator, timeoutInMs: Int) {
+            val matcher = object : Matcher<View> {
+                override fun describeTo(description: Description?) {
+                    description?.appendText("With adapter item count: ${matcherOperator.name} '$expectedCount'")
+                }
+
+                override fun describeMismatch(item: Any?, mismatchDescription: Description?) {
+                    mismatchDescription?.appendText(
+                        "Adapter count doesn't match. " +
+                                "Required ${matcherOperator.name} $expectedCount but found ${(item as RecyclerView?)?.adapter?.itemCount ?: -1} "
+                    )
+                }
+
+                override fun _dont_implement_Matcher___instead_extend_BaseMatcher_() = Unit
+
+                override fun matches(item: Any?): Boolean {
+                    val actualItems = (item as RecyclerView?)?.adapter?.itemCount ?: -1
+                    return when (matcherOperator) {
+                        MatchOperator.IS -> actualItems == expectedCount
+                        MatchOperator.LESS -> actualItems < expectedCount
+                        MatchOperator.LESS_EQUAL -> actualItems <= expectedCount
+                        MatchOperator.GRATER -> actualItems >expectedCount
+                        MatchOperator.GRATER_EQUAL -> actualItems >=expectedCount
+                    }
+                }
+            }
+
+            checkAssertion(Espresso.onView(ViewMatchers.withId(viewId)), matcher, timeoutInMs)
+        }
+
     }
 }
