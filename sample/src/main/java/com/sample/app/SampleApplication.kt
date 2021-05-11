@@ -14,7 +14,7 @@ class SampleApplication : MultiDexApplication() {
 }
 
 private class SampleDebugTree : Timber.DebugTree() {
-    override fun createStackElementTag(element: StackTraceElement): String? {
+    override fun createStackElementTag(element: StackTraceElement): String {
         return String.format("(%s:%s)", element.fileName, element.lineNumber)
     }
 }

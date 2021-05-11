@@ -7,13 +7,17 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var editText: EditText
     private lateinit var textView: TextView
+    private lateinit var recyclerTest: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +31,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                .setAction("Action", null).show()
         }
+
+        recyclerTest = findViewById(R.id.recyclerTest)
+        recyclerTest.isNestedScrollingEnabled = false
+        recyclerTest.setHasFixedSize(false)
+
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerTest.layoutManager = layoutManager
+
+        val adapter = StringsAdapter(listOf("A", "B", "C"))
+        recyclerTest.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
