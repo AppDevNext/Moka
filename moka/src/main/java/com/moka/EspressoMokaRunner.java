@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.accessibility.AccessibilityEvent;
 
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.intent.IntentCallback;
 import androidx.test.runner.intent.IntentMonitorRegistry;
 import androidx.test.runner.lifecycle.ActivityLifecycleCallback;
@@ -33,8 +34,6 @@ import javax.annotation.Nullable;
 import timber.log.Timber;
 
 import static android.os.Looper.getMainLooper;
-import static androidx.test.InstrumentationRegistry.getInstrumentation;
-import static androidx.test.InstrumentationRegistry.getTargetContext;
 import static com.moka.EspressoInternals.alreadyLooping;
 import static com.moka.EspressoInternals.waitForEspressoToIdle;
 import static com.moka.EspressoMoka.intentWillBeStubbedOut;
@@ -252,7 +251,7 @@ public final class EspressoMokaRunner {
 
     private static void setupAccessibilityEventListener() {
         // wrap in an anonymous class so we don't get problems on old API levels.
-        getInstrumentation().getUiAutomation().setOnAccessibilityEventListener(new UiAutomation.OnAccessibilityEventListener() {
+        InstrumentationRegistry.getInstrumentation().getUiAutomation().setOnAccessibilityEventListener(new UiAutomation.OnAccessibilityEventListener() {
             @Override
             public void onAccessibilityEvent(final AccessibilityEvent accessibilityEvent) {
                 ACCESSIBILITY_EVENT_LISTENER.onAccessibilityEvent(accessibilityEvent);
@@ -295,7 +294,7 @@ public final class EspressoMokaRunner {
     }
 
     private static boolean targetsSomethingInTheAppUnderTest(final Intent intent) {
-        return Objects.equals(intent.getPackage(), getTargetContext().getPackageName());
+        return Objects.equals(intent.getPackage(), InstrumentationRegistry.getInstrumentation().getTargetContext().getPackageName());
     }
 
     private static class ResumedActivityWatcher implements ActivityLifecycleCallback {
