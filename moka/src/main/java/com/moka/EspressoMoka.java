@@ -24,6 +24,7 @@ import androidx.test.espresso.NoActivityResumedException;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewAssertion;
 import androidx.test.espresso.core.internal.deps.guava.base.Stopwatch;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.intent.IntentStubber;
 import androidx.test.runner.intent.IntentStubberRegistry;
 
@@ -56,7 +57,6 @@ import static android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_HO
 import static android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS;
 import static android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_RECENTS;
 import static android.app.Activity.RESULT_OK;
-import static androidx.test.InstrumentationRegistry.getInstrumentation;
 import static androidx.test.InstrumentationRegistry.getTargetContext;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -281,7 +281,7 @@ public final class EspressoMoka {
      */
     @SuppressLint("OverlyBroadExceptionCaught")
     public static void waitForAccessibilityStreamToIdle() {
-        final UiAutomation uiAutomation = getInstrumentation().getUiAutomation();
+        final UiAutomation uiAutomation = InstrumentationRegistry.getInstrumentation().getUiAutomation();
         try {
             boolean timedOut = false;
             boolean waitedSuccessfully = false;
@@ -639,7 +639,7 @@ public final class EspressoMoka {
      */
     @SuppressLint("OverlyBroadExceptionCaught")
     public static void tryToOpenNotifications() {
-        getAccessibilityEventListener().waitUntil(not(withPackageName(getInstrumentation().getTargetContext().getPackageName())));
+        getAccessibilityEventListener().waitUntil(not(withPackageName(InstrumentationRegistry.getInstrumentation().getTargetContext().getPackageName())));
         Timber.i("Trying to open notifications via performGlobalAction(AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS)");
         try {
             performGlobalAction(GLOBAL_ACTION_NOTIFICATIONS);
@@ -662,7 +662,7 @@ public final class EspressoMoka {
     @SuppressWarnings("WeakerAccess")
     public static void performGlobalAction(@GlobalAction final int globalAction) {
         // looked at uiautomator code to figure out how to do this.
-        final UiAutomation automation = getInstrumentation().getUiAutomation();
+        final UiAutomation automation = InstrumentationRegistry.getInstrumentation().getUiAutomation();
         waitForAccessibilityStreamToIdle();
         assertNotNull("We can open the notification drawer without an instance of uiAutomation", automation);
         assertTrue("Couldn't open the notification drawer.", automation.performGlobalAction(globalAction));
@@ -694,7 +694,7 @@ public final class EspressoMoka {
     @SuppressLint("OverlyBroadExceptionCaught")
     private static void tryToGetToHomeScreen() {
         //todo - get reference to main package
-        getAccessibilityEventListener().waitUntil(not(withPackageName(getInstrumentation().getTargetContext().getPackageName())));
+        getAccessibilityEventListener().waitUntil(not(withPackageName(InstrumentationRegistry.getInstrumentation().getTargetContext().getPackageName())));
         Timber.i("Sending Home button via performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME)");
         try {
             performGlobalAction(GLOBAL_ACTION_HOME);
