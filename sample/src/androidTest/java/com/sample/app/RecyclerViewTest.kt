@@ -1,9 +1,11 @@
 package com.sample.app
 
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.moka.EspressoMoka.onView
 import com.moka.lib.assertions.MatchOperator
-import com.moka.lib.assertions.WaitingAssertion
+import com.moka.lib.assertions.RecyclerViewItemCountAssertion
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,32 +17,32 @@ class RecyclerViewTest {
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun testRecyclerViewItemCount() {
-        WaitingAssertion.assertAdapterMinimumItemsCount(R.id.recyclerTest, 2, 500)
-    }
-
-    @Test
     fun testRecyclerViewItemCountEqual() {
-        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 3, MatchOperator.IS, 500)
+        onView(ViewMatchers.withId(R.id.recyclerTest))
+            .check(RecyclerViewItemCountAssertion(3, MatchOperator.IS))
     }
 
     @Test
     fun testRecyclerViewItemCountLessEqual() {
-        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 3, MatchOperator.LESS_EQUAL, 500)
+        onView(ViewMatchers.withId(R.id.recyclerTest))
+            .check(RecyclerViewItemCountAssertion(3, MatchOperator.LESS_EQUAL))
     }
 
     @Test
     fun testRecyclerViewItemCountLess() {
-        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 4, MatchOperator.LESS, 500)
+        onView(ViewMatchers.withId(R.id.recyclerTest))
+            .check(RecyclerViewItemCountAssertion(4, MatchOperator.LESS))
     }
 
     @Test
     fun testRecyclerViewItemCountGreater() {
-        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 2, MatchOperator.GREATER, 500)
+        onView(ViewMatchers.withId(R.id.recyclerTest))
+            .check(RecyclerViewItemCountAssertion(2, MatchOperator.GREATER))
     }
 
     @Test
     fun testRecyclerViewItemCountGreaterEqual() {
-        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 3, MatchOperator.GREATER_EQUAL, 500)
+        onView(ViewMatchers.withId(R.id.recyclerTest))
+            .check(RecyclerViewItemCountAssertion(3, MatchOperator.GREATER_EQUAL))
     }
 }
