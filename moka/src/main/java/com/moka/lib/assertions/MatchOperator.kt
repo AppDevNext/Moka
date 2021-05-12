@@ -5,7 +5,7 @@ enum class MatchOperator {
     IS,
     LESS,
     LESS_EQUAL,
-    GRATER,
-    GRATER_EQUAL
+    GREATER,
+    GREATER_EQUAL
 
 }

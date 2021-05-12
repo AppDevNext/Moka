@@ -36,11 +36,11 @@ class RecyclerViewTest {
 
     @Test
     fun testRecyclerViewItemCountGreater() {
-        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 2, MatchOperator.GRATER, 500)
+        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 2, MatchOperator.GREATER, 500)
     }
 
     @Test
     fun testRecyclerViewItemCountGreaterEqual() {
-        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 3, MatchOperator.GRATER_EQUAL, 500)
+        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 3, MatchOperator.GREATER_EQUAL, 500)
     }
 }

@@ -133,8 +133,8 @@ class WaitingAssertion {
                         MatchOperator.IS -> actualItems == expectedCount
                         MatchOperator.LESS -> actualItems < expectedCount
                         MatchOperator.LESS_EQUAL -> actualItems <= expectedCount
-                        MatchOperator.GRATER -> actualItems >expectedCount
-                        MatchOperator.GRATER_EQUAL -> actualItems >=expectedCount
+                        MatchOperator.GREATER -> actualItems >expectedCount
+                        MatchOperator.GREATER_EQUAL -> actualItems >=expectedCount
                     }
                 }
             }
