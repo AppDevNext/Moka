@@ -1,6 +1,10 @@
 name: CI
 
-on: [pull_request]
+on:
+  pull_request:
+  push:
+    branches:
+      - master
 
 jobs:
   Build:
@@ -18,11 +22,11 @@ jobs:
           distribution: 'adopt'
           java-version: ${{ matrix.java_version }}
       - name: Install Android SDK
-        uses: malinskiy/action-android/install-sdk@release/0.1.1
+        uses: malinskiy/action-android/install-sdk@release/0.1.2
       - name: Build project
         run: ./gradlew assemble
       - name: Run instrumentation tests
-        uses: malinskiy/action-android/emulator-run-cmd@release/0.1.1
+        uses: malinskiy/action-android/emulator-run-cmd@release/0.1.2
         with:
           cmd: ./gradlew cAT
           api: 28
@@ -52,7 +56,7 @@ jobs:
           distribution: 'adopt'
           java-version: 8
       - name: Install Android SDK
-        uses: malinskiy/action-android/install-sdk@release/0.1.1
+        uses: malinskiy/action-android/install-sdk@release/0.1.2
       - name: Build project
         run: ./gradlew check
       - name: Archive Lint report
