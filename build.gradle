@@ -24,7 +24,7 @@ ext {
     versionRevision = getGitCommitCount()
 
     sdkVersion = 30
-    androidxTestEspresso = '3.3.0'
+    androidxTestEspresso = '3.4.0'
 }
 
 allprojects {
