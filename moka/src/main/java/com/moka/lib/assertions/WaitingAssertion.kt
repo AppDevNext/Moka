@@ -39,7 +39,7 @@ class WaitingAssertion {
                         uiController.loopMainThreadForAtLeast(20)
                     }
                     val millis = endTime - System.currentTimeMillis()
-                    Timber.d("${!(matcher.matches(view))} || ${System.currentTimeMillis() >= endTime} $loopCount within $millis ms")
+                    Timber.d("${!(matcher.matches(view))} || ${System.currentTimeMillis() >= endTime} loopCount=$loopCount within $millis ms")
                 }
             })
         }
