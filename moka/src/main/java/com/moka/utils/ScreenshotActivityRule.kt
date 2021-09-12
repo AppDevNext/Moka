@@ -10,6 +10,9 @@ import org.junit.Test
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
+/**
+ * It captures on error case a screenshot
+ */
 open class ScreenshotActivityRule<T : Activity>(activityClass: Class<T>) : NoAnimationActivityRule<T>(activityClass) {
 
     private val screenshotRule = ScreenshotRule()

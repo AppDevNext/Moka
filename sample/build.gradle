@@ -42,6 +42,7 @@ dependencies {
     androidTestImplementation project(':moka')
 }
 
+// necessary to capture screenshot
 def adbDirectory = '/storage/emulated/0/Download'
 
 def reportsDirectory = "$projectDir/../screenshots/adb"
