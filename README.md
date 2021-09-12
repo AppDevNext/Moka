@@ -43,6 +43,12 @@ it's now
 
 ```WaitingAssertion.checkAssertion(R.id.log_recycler, isDisplayed(), 1500)```
 
+## Screenshots in Espresso
+
+You need `ScreenshotActivityRule` to capture on error case a screenshot.
+Please see example `EditTextTest` and mention https://github.com/AppDevNext/Moka/blob/master/sample/build.gradle#L45-L81 to capture it from device
+https://github.com/AppDevNext/Moka/blob/master/.github/workflows/Android-pull-request.yml#L43-L47
+
 ## License
 
     Copyright (C) 2021 hannesa2
