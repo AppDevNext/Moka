@@ -47,7 +47,7 @@ class WaitingAssertion {
         /**
          * Main checker. Checks to see, whether the view matches the matcher param
          */
-        fun checkAssertion(viewInteraction: ViewInteraction, matcher: Matcher<View>, timeoutInMs: Int) {
+        private fun checkAssertion(viewInteraction: ViewInteraction, matcher: Matcher<View>, timeoutInMs: Int) {
             viewInteraction
                 .perform(waitForMatcher(timeoutInMs, matcher))
                 .check(matches(matcher))
@@ -89,7 +89,7 @@ class WaitingAssertion {
          */
         @Suppress("unused")
         fun assertAdapterMinimumItemsCount(viewId: Int, count: Int, timeoutInMs: Int) {
-            val matcher = object : Matcher<View> {
+            val matcher = object : BaseMatcher<View>() {
                 override fun describeTo(description: Description?) {
                     description?.appendText("With adapter item count: is '$count'")
                 }
@@ -101,8 +101,6 @@ class WaitingAssertion {
                     )
                 }
 
-                override fun _dont_implement_Matcher___instead_extend_BaseMatcher_() = Unit
-
                 override fun matches(item: Any?): Boolean {
                     return ((item as RecyclerView?)?.adapter?.itemCount ?: -1) >= count
                 }
@@ -113,7 +111,7 @@ class WaitingAssertion {
 
         @Suppress("unused")
         fun assertRecyclerAdapterItemsCount(viewId: Int, expectedCount: Int, matcherOperator : MatchOperator, timeoutInMs: Int) {
-            val matcher = object : Matcher<View> {
+            val matcher = object : BaseMatcher<View>() {
                 override fun describeTo(description: Description?) {
                     description?.appendText("With adapter item count: ${matcherOperator.name} '$expectedCount'")
                 }
@@ -124,8 +122,6 @@ class WaitingAssertion {
                                 "Required ${matcherOperator.name} $expectedCount but found ${(item as RecyclerView?)?.adapter?.itemCount ?: -1} "
                     )
                 }
-
-                override fun _dont_implement_Matcher___instead_extend_BaseMatcher_() = Unit
 
                 override fun matches(item: Any?): Boolean {
                     val actualItems = (item as RecyclerView?)?.adapter?.itemCount ?: -1
