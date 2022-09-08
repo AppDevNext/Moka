@@ -25,7 +25,7 @@ ext {
     revision = getGitCommitHash()
     versionRevision = getGitCommitCount()
 
-    sdkVersion = 32
+    sdkVersion = 33
     androidxTestEspresso = '3.4.0'
 }
 
