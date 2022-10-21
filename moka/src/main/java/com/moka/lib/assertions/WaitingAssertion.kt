@@ -90,8 +90,10 @@ class WaitingAssertion {
         @Suppress("unused")
         fun assertAdapterMinimumItemsCount(viewId: Int, count: Int, timeoutInMs: Int) {
             val matcher = object : BaseMatcher<View>() {
+                private var actualItems: Int = -1
+
                 override fun describeTo(description: Description?) {
-                    description?.appendText("With adapter item count: is '$count'")
+                    description?.appendText("With adapter item count: is '$actualItems'")
                 }
 
                 override fun describeMismatch(item: Any?, mismatchDescription: Description?) {
@@ -102,7 +104,8 @@ class WaitingAssertion {
                 }
 
                 override fun matches(item: Any?): Boolean {
-                    return ((item as RecyclerView?)?.adapter?.itemCount ?: -1) >= count
+                    actualItems = (item as RecyclerView?)?.adapter?.itemCount ?: -1
+                    return actualItems >= count
                 }
             }
 
@@ -112,8 +115,10 @@ class WaitingAssertion {
         @Suppress("unused")
         fun assertRecyclerAdapterItemsCount(viewId: Int, expectedCount: Int, matcherOperator : MatchOperator, timeoutInMs: Int) {
             val matcher = object : BaseMatcher<View>() {
+                private var actualItems: Int = -1
+
                 override fun describeTo(description: Description?) {
-                    description?.appendText("With adapter item count: ${matcherOperator.name} '$expectedCount'")
+                    description?.appendText("With adapter item count: '$actualItems'")
                 }
 
                 override fun describeMismatch(item: Any?, mismatchDescription: Description?) {
@@ -124,7 +129,7 @@ class WaitingAssertion {
                 }
 
                 override fun matches(item: Any?): Boolean {
-                    val actualItems = (item as RecyclerView?)?.adapter?.itemCount ?: -1
+                    actualItems = (item as RecyclerView?)?.adapter?.itemCount ?: -1
                     return when (matcherOperator) {
                         MatchOperator.IS -> actualItems == expectedCount
                         MatchOperator.LESS -> actualItems < expectedCount
