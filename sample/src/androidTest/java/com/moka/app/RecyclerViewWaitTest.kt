@@ -17,31 +17,31 @@ class RecyclerViewWaitTest {
 
     @Test
     fun testRecyclerViewWaitItemCount() {
-        WaitingAssertion.assertAdapterMinimumItemsCount(R.id.recyclerTest, 2, 500)
+        WaitingAssertion.assertAdapterMinimumItemsCount(R.id.recyclerTest, 5, 500)
     }
 
     @Test
     fun testRecyclerViewWaitItemCountEqual() {
-        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 3, MatchOperator.IS, 500)
+        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 6, MatchOperator.IS, 500)
     }
 
     @Test
     fun testRecyclerViewWaitItemCountLessEqual() {
-        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 3, MatchOperator.LESS_EQUAL, 500)
+        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 6, MatchOperator.LESS_EQUAL, 500)
     }
 
     @Test
     fun testRecyclerViewWaitItemCountLess() {
-        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 4, MatchOperator.LESS, 500)
+        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 7, MatchOperator.LESS, 500)
     }
 
     @Test
     fun testRecyclerViewWaitItemCountGreater() {
-        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 2, MatchOperator.GREATER, 500)
+        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 9, MatchOperator.GREATER, 500)
     }
 
     @Test
     fun testRecyclerViewWaitItemCountGreaterEqual() {
-        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 3, MatchOperator.GREATER_EQUAL, 500)
+        WaitingAssertion.assertRecyclerAdapterItemsCount(R.id.recyclerTest, 10, MatchOperator.GREATER_EQUAL, 500)
     }
 }
