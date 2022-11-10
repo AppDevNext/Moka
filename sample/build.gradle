@@ -37,7 +37,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
     androidTestImplementation "androidx.test.ext:junit:1.1.4"
-    androidTestImplementation 'androidx.test:runner:1.5.0'
+    androidTestImplementation 'androidx.test:runner:1.5.1'
     androidTestImplementation "androidx.test.espresso:espresso-core:${androidxTestEspresso}"
 
     androidTestImplementation project(':moka')
