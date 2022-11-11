@@ -44,6 +44,7 @@ jobs:
           abi: ${{ matrix.abi }}
           cmdOptions: -noaudio -no-boot-anim -no-window
       - name: Archive Espresso results
+        if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: Moka-Espresso-${{ matrix.api }}-${{ matrix.abi }}-report
@@ -51,6 +52,7 @@ jobs:
       - name: png-find
         run: find screenshots -name '*.png'
       - name: Archive screenshots
+        if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: Moka-Screenshots-${{ matrix.api }}-${{ matrix.abi }}-report
@@ -71,7 +73,8 @@ jobs:
       - name: Build project
         run: ./gradlew check
       - name: Archive Lint report
+        if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: Lint-report
-          path: sample/build/reports/lint-results.html
+          path: sample/build/reports/lint-results*.html
