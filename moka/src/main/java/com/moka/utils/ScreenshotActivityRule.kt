@@ -26,7 +26,9 @@ open class ScreenshotActivityRule<T : Activity>(activityClass: Class<T>) : NoAni
                     this@ScreenshotActivityRule.dumpThreads()
                 }
                 if (description.getAnnotation(Test::class.java).expected != throwable.javaClass) {
-                    screenshotRule.take(this@ScreenshotActivityRule.activity, "failed")
+                    this@ScreenshotActivityRule.activity?.let {
+                        screenshotRule.take(it, "failed")
+                    }
                 }
                 DefaultFailureHandler(context).handle(throwable, matcher)
             }
