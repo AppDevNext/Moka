@@ -1,9 +1,9 @@
 package com.sample.app
 
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.moka.lib.assertions.MatchOperator
 import com.moka.lib.assertions.WaitingAssertion
+import com.moka.utils.ScreenshotActivityRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -12,7 +12,7 @@ import org.junit.runner.RunWith
 class RecyclerViewWaitTest {
 
     @get:Rule
-    var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
+    var activityScenarioRule = ScreenshotActivityRule(MainActivity::class.java)
 
     @Test
     fun testRecyclerViewWaitItemCount() {
