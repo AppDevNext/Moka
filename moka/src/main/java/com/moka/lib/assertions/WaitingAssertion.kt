@@ -93,7 +93,7 @@ class WaitingAssertion {
                 private var actualItems: Int = -1
 
                 override fun describeTo(description: Description?) {
-                    description?.appendText("With adapter item count: is '$actualItems'")
+                    description?.appendText("Adapter item count: is '$actualItems' instead of '$count ($timeoutInMs ms)")
                 }
 
                 override fun describeMismatch(item: Any?, mismatchDescription: Description?) {
@@ -118,7 +118,7 @@ class WaitingAssertion {
                 private var actualItems: Int = -1
 
                 override fun describeTo(description: Description?) {
-                    description?.appendText("With adapter item count: '$actualItems'")
+                    description?.appendText("Adapter item count: '$actualItems' instead of '$expectedCount' ($timeoutInMs) ms")
                 }
 
                 override fun describeMismatch(item: Any?, mismatchDescription: Description?) {
