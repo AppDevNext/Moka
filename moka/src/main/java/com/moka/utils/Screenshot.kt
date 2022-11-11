@@ -14,44 +14,31 @@ import java.util.*
 object Screenshot {
 
     @RequiresApi(Build.VERSION_CODES.Q)
-    fun takeScreenshot(contentResolver: ContentResolver, fileName: String, excludeArea: Rect? = null): String? {
-        val screenCap = androidx.test.runner.screenshot.Screenshot.capture()
-        return processScreenCapture(contentResolver, screenCap, fileName, excludeArea)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.Q)
-    fun takeScreenshot(contentResolver: ContentResolver, view: View, fileName: String, excludeArea: Rect? = null): String? {
+    fun takeScreenshot(
+        activity: Activity,
+        view: View,
+        fileName: String,
+        excludeArea: Rect? = null
+    ): String? {
         val screenCap = androidx.test.runner.screenshot.Screenshot.capture(view)
-        return processScreenCapture(contentResolver, screenCap, fileName, excludeArea)
+        return processScreenCaptureQ(activity.contentResolver, screenCap, fileName, excludeArea)
     }
 
-    @RequiresApi(Build.VERSION_CODES.Q)
-    fun takeScreenshot(activity: Activity, fileName: String, excludeArea: Rect? = null): String? {
-        val screenCap = androidx.test.runner.screenshot.Screenshot.capture(activity)
-        return processScreenCapture(activity.contentResolver, screenCap, fileName, excludeArea)
-    }
-
-    fun takeScreenshot(fileName: String) {
+    fun takeScreenshot(activity: Activity, fileName: String): String? {
         val screenCap = androidx.test.runner.screenshot.Screenshot.capture()
-        try {
-            val caller = Thread.currentThread().stackTrace[3]
-            val automaticIdentifier =  caller.fileName + "-" + caller.methodName
-
-            screenCap.format = Bitmap.CompressFormat.PNG
-            screenCap.name = "$automaticIdentifier-$fileName"
-            val list = ArrayList<FileNameScreenCaptureProcessor>(1)
-            list.add(FileNameScreenCaptureProcessor(false))
-            val processor: Set<FileNameScreenCaptureProcessor> = list.toMutableSet()
-            processor.plus(FileNameScreenCaptureProcessor())
-            screenCap.process(processor)
-        } catch (e: IOException) {
-            e.printStackTrace()
-            throw IllegalStateException(e)
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            processScreenCaptureQ(activity.contentResolver, screenCap, fileName)
+        } else {
+            processScreenCapture(screenCap, fileName)
         }
     }
 
     fun takeScreenshotWithTimestamp(fileName: String) {
         val screenCap = androidx.test.runner.screenshot.Screenshot.capture()
+        processScreenTimestamp(screenCap, fileName)
+    }
+
+    private fun processScreenTimestamp(screenCap: ScreenCapture, fileName: String): String {
         try {
             screenCap.format = Bitmap.CompressFormat.PNG
             screenCap.name = fileName
@@ -64,9 +51,35 @@ object Screenshot {
             e.printStackTrace()
             throw IllegalStateException(e)
         }
+        return fileName
     }
 
-    private fun processScreenCapture(contentResolver: ContentResolver, screenCapture: ScreenCapture, fileName: String, excludeArea: Rect? = null): String? {
+    private fun processScreenCapture(screenCap: ScreenCapture, fileName: String): String? {
+        try {
+            val caller = Thread.currentThread().stackTrace[3]
+            val automaticIdentifier = caller.fileName + "-" + caller.methodName
+
+            screenCap.format = Bitmap.CompressFormat.PNG
+            screenCap.name = "$automaticIdentifier-$fileName"
+            val list = ArrayList<FileNameScreenCaptureProcessor>(1)
+            list.add(FileNameScreenCaptureProcessor(false))
+            val processor: Set<FileNameScreenCaptureProcessor> = list.toMutableSet()
+            processor.plus(FileNameScreenCaptureProcessor())
+            screenCap.process(processor)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            throw IllegalStateException(e)
+        }
+        return screenCap.name
+    }
+
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private fun processScreenCaptureQ(
+        contentResolver: ContentResolver,
+        screenCapture: ScreenCapture,
+        fileName: String,
+        excludeArea: Rect? = null
+    ): String? {
         try {
             val stackTrace = Thread.currentThread().stackTrace
 
@@ -77,7 +90,7 @@ object Screenshot {
                 stackTrace[5]
             }
 
-            val automaticIdentifier =  caller.fileName + "-" + caller.methodName
+            val automaticIdentifier = caller.fileName + "-" + caller.methodName
 
             screenCapture.format = Bitmap.CompressFormat.PNG
             screenCapture.name = "$automaticIdentifier-$fileName"

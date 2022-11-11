@@ -24,13 +24,13 @@ class EditTextTestApi29 {
 
     @Test
     fun changeTextSameActivity29() {
-        Screenshot.takeScreenshot(activityScenarioRule.activity.contentResolver,"Start")
+        Screenshot.takeScreenshot(activityScenarioRule.activity,"Start")
         // Type text and then press the button.
         EspressoMoka.onView(ViewMatchers.withId(R.id.editTextUserInput)).perform(ViewActions.typeText(STRING_TO_BE_TYPED), ViewActions.closeSoftKeyboard())
         EspressoMoka.onView(ViewMatchers.withId(R.id.changeTextBt)).perform(ViewActions.click())
         // Check that the text was changed.
         EspressoMoka.onView(ViewMatchers.withId(R.id.textToBeChanged)).checkMatches(ViewMatchers.withText(STRING_TO_BE_TYPED))
-        Screenshot.takeScreenshot(activityScenarioRule.activity.contentResolver,"End")
+        Screenshot.takeScreenshot(activityScenarioRule.activity,"End")
     }
 
     companion object {
