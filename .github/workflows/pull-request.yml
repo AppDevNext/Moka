@@ -14,17 +14,6 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest ]
-        api: [ 28 ]
-        abi: [ x86_64 ]
-        tag: [ 'default' ]
-        include:
-          #          - api: 31
-          #            abi: x86_64
-          #            tag: 'google_apis'
-          - os: ubuntu-latest
-            api: 30
-            abi: x86_64
-            tag: 'google_apis'
     steps:
       - name: kvm support
         run: |
@@ -40,35 +29,26 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: 17
-      - name: Install Android SDK
-        uses: hannesa2/action-android/install-sdk@0.1.16.7
-      - name: Build project
-        run: ./gradlew assemble
-      - name: Run instrumentation tests
-        uses: hannesa2/action-android/emulator-run-cmd@0.1.16.7
-        with:
-          cmd: ./gradlew nexusOneApi30DebugAndroidTest
-#          api: ${{ matrix.api }}
-#          tag: ${{ matrix.tag }}
-#          abi: ${{ matrix.abi }}
-#          cmdOptions: -noaudio -no-boot-anim -no-window
+      - uses: hannesa2/action-android/install-sdk@0.1.16.7
+      - run: sdkmanager platform-tools
+      - run: ./gradlew nexusOneApi30DebugAndroidTest
       - name: Archive Espresso report
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
-          name: Moka-Espresso-report-${{ matrix.api }}-${{ matrix.abi }}-report
+          name: Moka-Espresso-report
           path: sample/build/reports/androidTests/connected
       - name: Archive Espresso results
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: Moka-Espresso-${{ matrix.api }}-${{ matrix.abi }}-report
-          path: sample/build/reports/androidTests/connected
+          name: Moka-Espresso-result
+          path: sample/build/outputs/androidTest-results/managedDevice
       - name: Archive screenshots
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: Moka-Screenshots-${{ matrix.api }}-${{ matrix.abi }}-report
+          name: Moka-Screenshots
           path: |
             sample/build/outputs/connected_android_test_additional_output/debugAndroidTest/connected
             sample/build/outputs/androidTest-results/connected
@@ -82,7 +62,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
-      - name: Install JDK ${{ matrix.java_version }}
+      - name: Install JDK
         uses: actions/setup-java@v5
         with:
           distribution: 'adopt'
