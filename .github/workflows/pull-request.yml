@@ -47,11 +47,17 @@ jobs:
       - name: Run instrumentation tests
         uses: hannesa2/action-android/emulator-run-cmd@0.1.16.7
         with:
-          cmd: ./gradlew cAT --continue
-          api: ${{ matrix.api }}
-          tag: ${{ matrix.tag }}
-          abi: ${{ matrix.abi }}
-          cmdOptions: -noaudio -no-boot-anim -no-window
+          cmd: ./gradlew nexusOneApi30DebugAndroidTest
+#          api: ${{ matrix.api }}
+#          tag: ${{ matrix.tag }}
+#          abi: ${{ matrix.abi }}
+#          cmdOptions: -noaudio -no-boot-anim -no-window
+      - name: Archive Espresso report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: Moka-Espresso-report-${{ matrix.api }}-${{ matrix.abi }}-report
+          path: sample/build/reports/androidTests/connected
       - name: Archive Espresso results
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
