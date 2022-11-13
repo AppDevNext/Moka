@@ -21,7 +21,6 @@ android {
         }
     }
     namespace 'com.moka'
-
 }
 
 dependencies {
