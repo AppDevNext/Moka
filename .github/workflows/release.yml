@@ -19,6 +19,13 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: 11
+      - name: Find Tag
+        id: tagger
+        uses: jimschubert/query-tag-action@v2
+        with:
+          skip-unshallow: 'true'
+          abbrev: false
+          commit-ish: HEAD
       - name: Check pre-release
         run: |
           echo "tag=${{steps.tagger.outputs.tag}}"
