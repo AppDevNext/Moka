@@ -15,8 +15,7 @@ android {
         applicationId "com.sample.app"
         versionCode 1
         versionName "1.0"
-         testInstrumentationRunner "com.sample.app.SampleAndroidJUnitRunner"
-//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments useTestStorageService: 'true'
     }
     buildTypes {
