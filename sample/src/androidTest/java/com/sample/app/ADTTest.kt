@@ -25,8 +25,7 @@ import java.io.IOException
 @RunWith(AndroidJUnit4::class)
 class ADTTest {
 
-    // a handy JUnit rule that stores the method name, so it can be used to generate unique
-    // screenshot files per test method
+    // a handy JUnit rule that stores the method name, so it can be used to generate unique screenshot files per test method
     @get:Rule
     var nameRule = TestName()
 
@@ -70,7 +69,7 @@ class ADTTest {
     fun changeTextSameActivity() {
         Espresso.onView(ViewMatchers.isRoot())
             .captureToBitmap()
-            .writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName} Start")
+            .writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}-Start")
         // Type text and then press the button.
         onView(ViewMatchers.withId(R.id.editTextUserInput)).perform(ViewActions.typeText(STRING_TO_BE_TYPED), ViewActions.closeSoftKeyboard())
         onView(ViewMatchers.withId(R.id.changeTextBt)).perform(ViewActions.click())
@@ -78,7 +77,7 @@ class ADTTest {
         onView(ViewMatchers.withId(R.id.textToBeChanged)).check(matches(ViewMatchers.withText(STRING_TO_BE_TYPED)))
         Espresso.onView(ViewMatchers.isRoot())
             .captureToBitmap()
-            .writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName} End")
+            .writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}-End")
     }
 
     companion object {
