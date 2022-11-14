@@ -4,30 +4,28 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.sample.app.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var editText: EditText
-    private lateinit var textView: TextView
     private lateinit var recyclerTest: RecyclerView
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val viewRoot = binding.root
+        setContentView(viewRoot)
+
         setSupportActionBar(toolbar)
 
-        findViewById<View>(R.id.changeTextBt).setOnClickListener(this)
-
-        textView = findViewById<View>(R.id.textToBeChanged) as TextView
-        editText = findViewById<View>(R.id.editTextUserInput) as EditText
+        binding.contentContainer.changeTextBt.setOnClickListener(this)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -63,13 +61,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(view: View) {
         // Get the text from the EditText view.
-        val text = editText.text.toString()
+        val text = binding.contentContainer.editTextUserInput.text.toString()
 
         val changeTextBtId = R.id.changeTextBt
 
         if (view.id == changeTextBtId) {
             // First button's interaction: set a text in a text view.
-            textView.text = text
+            binding.contentContainer.textToBeChanged.text = text
         }
     }
 }
