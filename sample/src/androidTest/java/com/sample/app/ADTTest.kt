@@ -2,7 +2,6 @@ package com.sample.app
 
 import androidx.test.core.app.takeScreenshot
 import androidx.test.core.graphics.writeToTestStorage
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -38,7 +37,7 @@ class ADTTest {
     @Test
     @Throws(IOException::class)
     fun saveActivityBitmap() {
-        Espresso.onView(ViewMatchers.isRoot())
+        onView(ViewMatchers.isRoot())
             .captureToBitmap()
             .writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}")
     }
@@ -49,7 +48,7 @@ class ADTTest {
     @Test
     @Throws(IOException::class)
     fun saveViewBitmap() {
-        Espresso.onView(ViewMatchers.withText("Hello Espresso!"))
+        onView(ViewMatchers.withText("Hello Espresso!"))
             .captureToBitmap()
             .writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}")
     }
@@ -67,7 +66,7 @@ class ADTTest {
 
     @Test
     fun changeTextSameActivity() {
-        Espresso.onView(ViewMatchers.isRoot())
+        onView(ViewMatchers.isRoot())
             .captureToBitmap()
             .writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}-Start")
         // Type text and then press the button.
@@ -75,7 +74,7 @@ class ADTTest {
         onView(ViewMatchers.withId(R.id.changeTextBt)).perform(ViewActions.click())
         // Check that the text was changed.
         onView(ViewMatchers.withId(R.id.textToBeChanged)).check(matches(ViewMatchers.withText(STRING_TO_BE_TYPED)))
-        Espresso.onView(ViewMatchers.isRoot())
+        onView(ViewMatchers.isRoot())
             .captureToBitmap()
             .writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}-End")
     }
