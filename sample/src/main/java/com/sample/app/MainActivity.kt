@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.sample.app.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -23,11 +22,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val viewRoot = binding.root
         setContentView(viewRoot)
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
 
         binding.contentContainer.changeTextBt.setOnClickListener(this)
 
-        fab.setOnClickListener { view ->
+        binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
