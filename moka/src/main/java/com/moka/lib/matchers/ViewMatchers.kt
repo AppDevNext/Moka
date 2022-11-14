@@ -19,9 +19,7 @@ import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.textfield.TextInputLayout
-import com.moka.EspressoInternals
 import com.moka.lib.actions.SpannableUtils.getSpansValues
-import com.moka.lib.internals.TestAccessibilityEventListener.toPrintString
 import org.hamcrest.BaseMatcher
 import org.hamcrest.CoreMatchers.containsString
 import org.hamcrest.Description
@@ -70,42 +68,6 @@ fun withTextColor(@ColorInt color: Int): Matcher<View> {
 
         override fun describeTo(description: Description) {
             description.appendText("with text color: " + color)
-        }
-    }
-}
-
-/**
- * Returns a [Matcher] which accepts a view so long as it can be scrolled to satisfy
- * the input view matcher. Note that it also actually scrolls the [View].
- */
-fun canBeScrolledSoIt(viewMatcher: Matcher<View>): Matcher<View> {
-    return object : BaseMatcher<View>() {
-        override fun matches(o: Any?): Boolean {
-            if (o != null && o is View) {
-                val matches = viewMatcher.matches(o)
-                if (matches) {
-                    return true
-                }
-
-                var parent: ViewParent? = o.parent
-                while (parent != null) {
-                    if (parent is ScrollView) {
-                        parent.requestChildFocus(o, o)
-                        EspressoInternals.waitForEspressoToIdle()
-                        return viewMatcher.matches(o)
-                    } else if (parent is NestedScrollView) {
-                        parent.requestChildFocus(o, o)
-                        EspressoInternals.waitForEspressoToIdle()
-                        return viewMatcher.matches(o)
-                    }
-                    parent = parent.parent
-                }
-            }
-            return false
-        }
-
-        override fun describeTo(description: Description) {
-            description.appendText(" can be scrolled so it " + toPrintString<View>(viewMatcher))
         }
     }
 }
