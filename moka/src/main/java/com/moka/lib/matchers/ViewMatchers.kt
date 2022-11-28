@@ -51,11 +51,11 @@ fun isEditTextValueEqualTo(content: String): Matcher<View> {
     return object : TypeSafeMatcher<View>() {
 
         override fun describeTo(description: Description) {
-            description.appendText("Match EditText with value: " + content)
+            description.appendText("Match EditText with value: $content")
         }
 
-        public override fun matchesSafely(view: View): Boolean = (view as? EditText)?.text?.toString()?.equals(content, true)
-                ?: false
+        public override fun matchesSafely(view: View): Boolean =
+            (view as? EditText)?.text?.toString()?.equals(content, true) ?: false
     }
 }
 
@@ -67,7 +67,7 @@ fun withTextColor(@ColorInt color: Int): Matcher<View> {
         override fun matchesSafely(item: TextView?): Boolean = color == item?.currentTextColor
 
         override fun describeTo(description: Description) {
-            description.appendText("with text color: " + color)
+            description.appendText("with text color: $color")
         }
     }
 }
@@ -93,11 +93,11 @@ fun hasWindowFocus(): Matcher<View> {
 fun contains(substring: String, ignoreCase: Boolean = false): Matcher<String> {
     return object : BaseMatcher<String>() {
 
-        override fun matches(o: Any?): Boolean = o?.toString()?.contains(substring, ignoreCase = ignoreCase)
-                ?: false
+        override fun matches(o: Any?): Boolean =
+            o?.toString()?.contains(substring, ignoreCase = ignoreCase) ?: false
 
         override fun describeTo(description: Description) {
-            description.appendText("contains " + substring)
+            description.appendText("contains $substring")
         }
     }
 }
@@ -108,7 +108,8 @@ fun contains(substring: String, ignoreCase: Boolean = false): Matcher<String> {
 fun withClickableText(text: String): Matcher<View> {
     return object : BaseMatcher<View>() {
 
-        override fun matches(o: Any?): Boolean = (o as? TextView)?.let { getSpansValues(it, ClickableSpan::class.java).contains(text) }
+        override fun matches(o: Any?): Boolean =
+            (o as? TextView)?.let { getSpansValues(it, ClickableSpan::class.java).contains(text) }
                 ?: false
 
         override fun describeTo(description: Description) {
@@ -126,7 +127,7 @@ fun instanceOf(clazz: Class<*>): Matcher<View> {
         override fun matches(o: Any?) = clazz.isInstance(o)
 
         override fun describeTo(description: Description) {
-            description.appendText("is instance of " + clazz)
+            description.appendText("is instance of $clazz")
         }
     }
 }
@@ -139,7 +140,7 @@ fun isGone(): Matcher<View> {
         public override fun matchesSafely(view: View): Boolean = view.visibility == View.GONE
 
         override fun describeTo(description: Description) {
-            description.appendText("visiblility == GONE")
+            description.appendText("visibility == GONE")
         }
     }
 }
@@ -158,7 +159,7 @@ fun textInputHasErrorText(expectedErrorText: String): Matcher<View> {
         }
 
         override fun describeTo(description: Description) {
-            description.appendText(" has error text: " + expectedErrorText)
+            description.appendText(" has error text: $expectedErrorText")
         }
     }
 }
@@ -257,10 +258,11 @@ fun date(year: Int, month: Int, day: Int): Matcher<View> {
     return object : BoundedMatcher<View, DatePicker>(DatePicker::class.java) {
 
         // DatePicker has zero based month
-        public override fun matchesSafely(view: DatePicker): Boolean = view.dayOfMonth == day && view.month + 1 == month && view.year == year
+        public override fun matchesSafely(view: DatePicker): Boolean =
+            view.dayOfMonth == day && view.month + 1 == month && view.year == year
 
         override fun describeTo(description: Description) {
-            description.appendText("is datepicker with date $year/$month/$day")
+            description.appendText("is DatePicker with date $year/$month/$day")
         }
     }
 }
@@ -331,7 +333,7 @@ fun withDrawable(@DrawableRes expectedId: Int): Matcher<View> {
 fun hasChild(matcher: Matcher<View>): Matcher<View> {
     return object : BaseMatcher<View>() {
         override fun describeTo(description: Description?) {
-            description?.appendText("is view that has child ${matcher}")
+            description?.appendText("is view that has child $matcher")
         }
 
         override fun matches(item: Any?): Boolean {
