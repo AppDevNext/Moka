@@ -98,8 +98,8 @@ class WaitingAssertion {
 
                 override fun describeMismatch(item: Any?, mismatchDescription: Description?) {
                     mismatchDescription?.appendText(
-                            "Adapter count doesn't match. " +
-                                    "Required $count but found ${(item as RecyclerView?)?.adapter?.itemCount ?: -1} "
+                        "Adapter count doesn't match. " +
+                                "Required $count but found ${(item as RecyclerView?)?.adapter?.itemCount ?: -1} "
                     )
                 }
 
@@ -113,7 +113,7 @@ class WaitingAssertion {
         }
 
         @Suppress("unused")
-        fun assertRecyclerAdapterItemsCount(viewId: Int, expectedCount: Int, matcherOperator : MatchOperator, timeoutInMs: Int) {
+        fun assertRecyclerAdapterItemsCount(viewId: Int, expectedCount: Int, matcherOperator: MatchOperator, timeoutInMs: Int) {
             val matcher = object : BaseMatcher<View>() {
                 private var actualItems: Int = -1
 
@@ -134,8 +134,8 @@ class WaitingAssertion {
                         MatchOperator.IS -> actualItems == expectedCount
                         MatchOperator.LESS -> actualItems < expectedCount
                         MatchOperator.LESS_EQUAL -> actualItems <= expectedCount
-                        MatchOperator.GREATER -> actualItems >expectedCount
-                        MatchOperator.GREATER_EQUAL -> actualItems >=expectedCount
+                        MatchOperator.GREATER -> actualItems > expectedCount
+                        MatchOperator.GREATER_EQUAL -> actualItems >= expectedCount
                     }
                 }
             }
