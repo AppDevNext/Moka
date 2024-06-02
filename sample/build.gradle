@@ -6,10 +6,10 @@ plugins {
 
 android {
     namespace 'com.sample.app'
-    compileSdkVersion sdkVersion
 
     defaultConfig {
         minSdkVersion 21
+        compileSdk sdkVersion
         targetSdkVersion sdkVersion
 
         applicationId "com.sample.app"

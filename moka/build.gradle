@@ -6,10 +6,10 @@ plugins {
 
 android {
     namespace 'com.moka'
-    compileSdkVersion sdkVersion
 
     defaultConfig {
         minSdkVersion 21
+        compileSdk sdkVersion
         targetSdkVersion sdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
