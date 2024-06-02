@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace 'com.moka'
     compileSdkVersion sdkVersion
 
     defaultConfig {
@@ -20,7 +21,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'com.moka'
 }
 
 dependencies {

@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace 'com.sample.app'
     compileSdkVersion sdkVersion
 
     defaultConfig {
@@ -26,7 +27,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    namespace 'com.sample.app'
 
     testOptions {
         managedDevices {
