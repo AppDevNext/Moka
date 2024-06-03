@@ -74,7 +74,7 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: 17
-      - uses: gradle/wrapper-validation-action@v1.0.6
+      - uses: gradle/wrapper-validation-action@v3.3.2
       - name: Install Android SDK
         uses: hannesa2/action-android/install-sdk@0.1.16.7
       - name: Build project
