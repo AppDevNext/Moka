@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ macOS-13 ]
+        os: [ ubuntu-latest ]
         api: [ 28 ]
         abi: [ x86_64 ]
         tag: [ 'default' ]
@@ -21,11 +21,18 @@ jobs:
           #          - api: 31
           #            abi: x86_64
           #            tag: 'google_apis'
-          - os: macOS-13
+          - os: ubuntu-latest
             api: 30
             abi: x86_64
             tag: 'google_apis'
     steps:
+      - name: kvm support
+        run: |
+          egrep -c '(vmx|svm)' /proc/cpuinfo
+          id
+          sudo adduser $USER kvm
+          sudo chown -R $USER /dev/kvm
+          id
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install JDK
