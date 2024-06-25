@@ -21,7 +21,7 @@ ext {
     versionRevision = getGitCommitCount()
 
     sdkVersion = 34
-    androidxTestEspresso = '3.5.1'
+    androidxTestEspresso = '3.6.0'
 }
 
 println "Gradle uses Java ${Jvm.current()}"
