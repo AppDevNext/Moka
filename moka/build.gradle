@@ -45,7 +45,7 @@ dependencies {
     implementation "androidx.annotation:annotation:1.8.0"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
 
-    testImplementation "org.assertj:assertj-core:3.26.0"
+    testImplementation "org.assertj:assertj-core:3.26.3"
     testImplementation 'junit:junit:4.13.2'
 }
 
