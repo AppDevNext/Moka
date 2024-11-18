@@ -1,12 +1,14 @@
 package com.sample.app
 
+import android.graphics.Bitmap
 import androidx.test.core.app.takeScreenshot
 import androidx.test.core.graphics.writeToTestStorage
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.captureToBitmap
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.screenshot.captureToBitmap
+import androidx.test.espresso.matcher.ViewMatchers.isRoot
 import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
@@ -37,9 +39,9 @@ class ADTTest {
     @Test
     @Throws(IOException::class)
     fun saveActivityBitmap() {
-        onView(ViewMatchers.isRoot())
-            .captureToBitmap()
-            .writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}")
+        onView(isRoot())
+            .perform(captureToBitmap { bitmap: Bitmap -> bitmap.writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}") })
+
     }
 
     /**
@@ -49,8 +51,7 @@ class ADTTest {
     @Throws(IOException::class)
     fun saveViewBitmap() {
         onView(ViewMatchers.withText("Hello Espresso!"))
-            .captureToBitmap()
-            .writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}")
+            .perform(captureToBitmap { bitmap: Bitmap -> bitmap.writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}") })
     }
 
     /**
@@ -66,17 +67,16 @@ class ADTTest {
 
     @Test
     fun changeTextSameActivity() {
-        onView(ViewMatchers.isRoot())
-            .captureToBitmap()
-            .writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}-Start")
+        onView(isRoot())
+            .perform(captureToBitmap { bitmap: Bitmap -> bitmap.writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}-Start") })
+
         // Type text and then press the button.
         onView(ViewMatchers.withId(R.id.editTextUserInput)).perform(ViewActions.typeText(STRING_TO_BE_TYPED), ViewActions.closeSoftKeyboard())
         onView(ViewMatchers.withId(R.id.changeTextBt)).perform(ViewActions.click())
         // Check that the text was changed.
         onView(ViewMatchers.withId(R.id.textToBeChanged)).check(matches(ViewMatchers.withText(STRING_TO_BE_TYPED)))
-        onView(ViewMatchers.isRoot())
-            .captureToBitmap()
-            .writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}-End")
+        onView(isRoot())
+            .perform(captureToBitmap { bitmap: Bitmap -> bitmap.writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}-End") })
     }
 
     companion object {
