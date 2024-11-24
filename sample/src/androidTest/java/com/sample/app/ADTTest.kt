@@ -41,7 +41,6 @@ class ADTTest {
     fun saveActivityBitmap() {
         onView(isRoot())
             .perform(captureToBitmap { bitmap: Bitmap -> bitmap.writeToTestStorage("${javaClass.simpleName}_${nameRule.methodName}") })
-
     }
 
     /**
