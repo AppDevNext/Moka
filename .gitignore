@@ -45,3 +45,5 @@ captures/
 
 .DS_Store
 *.db
+
+.kotlin
