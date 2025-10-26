@@ -4,25 +4,6 @@
 
 This library provides some useful functions
 
-## Include the library
-
-The easiest way to add `Moka` to your project is via Gradle. Just add the following lines to your `build.gradle`:
-
-```kts
-dependencies {
-   androidTestImplementation("com.github.AppDevNext:Moka:$latestVersion")
-}
-```
-
-To tell Gradle where to find the library, make sure `build.gradle` also contains this:
-
-```kts
-allprojects {
-   repositories {
-       maven { url = uri("https://jitpack.io") }
-   }
-}
-```
 ## No more Thread.sleep() in Espresso
 
 To get rid of Thread.sleep() in tests, there is `WaitingAssertion` which waits until a Matcher pass or the timeout elapse. 
@@ -47,6 +28,26 @@ it's now
 You need `ScreenshotActivityRule` to capture on error case a screenshot.
 Please see example `EditTextTest` and mention https://github.com/AppDevNext/Moka/blob/master/sample/build.gradle#L45-L81 to capture it from device
 https://github.com/AppDevNext/Moka/blob/master/.github/workflows/Android-pull-request.yml#L43-L47
+
+## Include the library
+
+The easiest way to add `Moka` to your project is via Gradle. Just add the following lines to your `build.gradle`:
+
+```kts
+dependencies {
+   androidTestImplementation("com.github.AppDevNext:Moka:$latestVersion")
+}
+```
+
+To tell Gradle where to find the library, make sure `build.gradle` also contains this:
+
+```kts
+allprojects {
+   repositories {
+       maven { url = uri("https://jitpack.io") }
+   }
+}
+```
 
 ## License
 
