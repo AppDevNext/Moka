@@ -1,27 +1,19 @@
 import org.gradle.internal.jvm.Jvm
 
 buildscript {
-    ext.kotlin_version = '2.2.20'
+    ext.kotlin_version = "2.2.20"
 
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven { url "https://jitpack.io" }
     }
 
     dependencies {
-        classpath 'com.google.gms:google-services:4.4.4'
-        classpath 'com.android.tools.build:gradle:8.13.0'
+        classpath "com.google.gms:google-services:4.4.4"
+        classpath "com.android.tools.build:gradle:8.13.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
-}
-
-ext {
-    revision = getGitCommitHash()
-    versionRevision = getGitCommitCount()
-
-    sdkVersion = 36
-    androidxTestEspresso = '3.7.0'
 }
 
 println "Gradle uses Java ${Jvm.current()}"
@@ -30,24 +22,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
-    }
-}
-
-private static def getGitCommitCount() {
-    try {
-        return 'git rev-list --first-parent --count HEAD'.execute().text.trim() as Integer
-    }
-    catch (ignored) {
-        return 0
-    }
-}
-
-private static def getGitCommitHash() {
-    try {
-        return 'git rev-parse --short HEAD'.execute().text.trim()
-    }
-    catch (ignored) {
-        return null
+        maven { url "https://jitpack.io" }
     }
 }
