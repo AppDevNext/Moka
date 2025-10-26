@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/appdevnext/moka.svg)](https://jitpack.io/#appdevnext/moka)
+[![](https://jitpack.io/v/AppDevNext/Moka.svg)](https://jitpack.io/#AppDevNext/Moka)
 
 # An Android test tool library
 
