@@ -8,19 +8,18 @@ This library provides some useful functions
 
 The easiest way to add `Moka` to your project is via Gradle. Just add the following lines to your `build.gradle`:
 
-```groovy
+```kts
 dependencies {
-   androidTestImplementation 'com.github.hannesa2:Moka:$latestVersion'
+   androidTestImplementation("com.github.AppDevNext:Moka:$latestVersion")
 }
 ```
 
 To tell Gradle where to find the library, make sure `build.gradle` also contains this:
 
-```groovy
+```kts
 allprojects {
    repositories {
-      ...
-      maven { url 'https://jitpack.io' }
+       maven { url = uri("https://jitpack.io") }
    }
 }
 ```
@@ -51,7 +50,7 @@ https://github.com/AppDevNext/Moka/blob/master/.github/workflows/Android-pull-re
 
 ## License
 
-    Copyright (C) 2021 hannesa2
+    Copyright (C) 2025 hannesa2
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
