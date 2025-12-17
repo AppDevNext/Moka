@@ -46,7 +46,7 @@ android {
 
 dependencies {
     api("androidx.test.espresso:espresso-contrib:3.7.0")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:2.2.21")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:2.3.0")
     implementation("com.jakewharton.timber:timber:5.0.1")
     implementation("io.reactivex.rxjava2:rxjava:2.2.21")
     implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
