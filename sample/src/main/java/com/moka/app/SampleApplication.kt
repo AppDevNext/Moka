@@ -1,10 +1,9 @@
 package com.moka.app
 
-import androidx.multidex.MultiDexApplication
-import com.moka.app.BuildConfig
+import android.app.Application
 import timber.log.Timber
 
-class SampleApplication : MultiDexApplication() {
+class SampleApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
