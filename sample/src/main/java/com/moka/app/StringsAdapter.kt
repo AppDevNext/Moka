@@ -1,6 +1,5 @@
 package com.moka.app
 
-import android.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import com.moka.app.StringsAdapter.TagsViewHolder
 
 class StringsAdapter(private var arrayList: List<String>) : RecyclerView.Adapter<TagsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagsViewHolder {
-        val layoutView = LayoutInflater.from(parent.context).inflate(R.layout.simple_list_item_1, parent, false)
+        val layoutView = LayoutInflater.from(parent.context).inflate(android.R.layout.simple_list_item_1, parent, false)
         return TagsViewHolder(layoutView)
     }
 
@@ -22,7 +21,7 @@ class StringsAdapter(private var arrayList: List<String>) : RecyclerView.Adapter
         return arrayList.size
     }
 
-    inner class TagsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var tagText: TextView = view.findViewById(R.id.text1)
+    class TagsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var tagText: TextView = view.findViewById(android.R.id.text1)
     }
 }
