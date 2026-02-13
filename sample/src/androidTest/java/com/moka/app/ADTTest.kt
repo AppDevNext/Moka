@@ -1,4 +1,4 @@
-package com.sample.app
+package com.moka.app
 
 import android.graphics.Bitmap
 import androidx.test.core.app.takeScreenshot

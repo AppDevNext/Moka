@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    namespace = "com.sample.app"
+    namespace = "com.moka.app"
 
     defaultConfig {
         minSdk = 21
         compileSdk = 36
         targetSdk { version = release(36) }
 
-        applicationId = "com.sample.app"
+        applicationId = "com.moka.app"
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
