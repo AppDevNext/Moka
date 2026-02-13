@@ -108,7 +108,6 @@ fun clickRightDrawable(): ViewAction {
  * Returns a [ViewAction] that clicks on a clickable substring inside of a [TextView].
  * @param repeatCount The number of times we want to perform the click. Defaults to 1
  */
-@JvmOverloads
 fun clickSpannableWithText(text: String, repeatCount: Int = 1): ViewAction {
     return object : ViewAction {
 
@@ -131,7 +130,6 @@ fun clickSpannableWithText(text: String, repeatCount: Int = 1): ViewAction {
 /**
  * Returns a [ViewAction] that tries clicking the [View] multiple times before failing.
  */
-@JvmOverloads
 fun clickWithRetry(numberOfRetries: Int = 3): ViewAction {
     val click = androidx.test.espresso.action.ViewActions.click()
     val viewMatcher = isEnabled()
@@ -184,7 +182,6 @@ private fun withAddedConstraints(click: ViewAction, viewMatcher: Matcher<View>):
 /**
  * Wraps the given [ViewAction] into another [ViewAction] that retries a given number of times before failing.
  */
-@JvmOverloads
 fun viewActionWithRetry(viewAction: ViewAction, numberOfRetries: Int = 3): ViewAction {
     return object : ViewAction {
 
