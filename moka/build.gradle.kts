@@ -1,6 +1,5 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
     id("maven-publish")
 }
 
@@ -10,7 +9,6 @@ android {
     defaultConfig {
         minSdk = 21
         compileSdk = 36
-        targetSdkVersion(36)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments.putAll(
