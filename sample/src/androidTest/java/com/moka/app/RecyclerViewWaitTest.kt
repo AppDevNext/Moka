@@ -1,9 +1,10 @@
-package com.sample.app
+package com.moka.app
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.moka.lib.assertions.MatchOperator
 import com.moka.lib.assertions.WaitingAssertion
+import com.moka.app.R
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

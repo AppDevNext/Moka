@@ -1,6 +1,7 @@
-package com.sample.app
+package com.moka.app
 
 import androidx.multidex.MultiDexApplication
+import com.moka.app.BuildConfig
 import timber.log.Timber
 
 class SampleApplication : MultiDexApplication() {
