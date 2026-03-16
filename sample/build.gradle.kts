@@ -6,7 +6,7 @@ android {
     namespace = "com.moka.app"
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 23
         compileSdk = 36
         targetSdk { version = release(36) }
 
