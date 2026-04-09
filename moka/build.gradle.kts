@@ -50,7 +50,7 @@ dependencies {
     implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
 
     // waiter
-    implementation("androidx.annotation:annotation:1.9.1")
+    implementation("androidx.annotation:annotation:1.10.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     testImplementation("org.assertj:assertj-core:3.27.7")
