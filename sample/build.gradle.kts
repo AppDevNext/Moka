@@ -65,7 +65,7 @@ android {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.3.20")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.3.21")
     implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("androidx.core:core-ktx:1.18.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
